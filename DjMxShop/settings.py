@@ -63,6 +63,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 配置异常中间件
+    'common.middle_ware.error_middleWare.ExceptionErrorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,7 +72,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+
+MIDDLEWARE_CLASSES = (
+    # 'common.middle_ware.error_middleWare.ExceptionErrorMiddleware',
+)
 
 ROOT_URLCONF = 'DjMxShop.urls'
 
@@ -163,6 +170,8 @@ REST_FRAMEWORK = {
     # 配置自定义分页
     'DEFAULT_PAGINATION_CLASS': 'common.utils.common_pagination.LargeResultsSetPagination',
     # 'PAGE_SIZE': 10,
+    # 接口文档
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 # Internationalization
@@ -286,3 +295,5 @@ CKEDITOR_CONFIGS = {
         ]),
     },
 }
+
+APPEND_SLASH = False
